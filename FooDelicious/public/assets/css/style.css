@@ -1,0 +1,117 @@
+    .headerNav {
+        color: white;
+        background-color: #434040
+    }
+
+    body {
+        text-align: center;
+        background-color:  rgb(246, 244, 228);
+        font: 13px/20px normal Helvetica, Arial, sans-serif;
+        color: #000000;
+        min-height: 100vh;
+    
+    }
+    .bodyContainer{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    #footer{
+        font-size:smaller;
+    }
+
+    .custom-navbar {
+        background-color:  #434040; 
+    }
+
+    .custom-navbar .nav-link {
+        color: white; 
+    }
+    .center-text {
+        text-align:center;
+    }
+
+    .pagination{
+        list-style-type: none;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pagination li{
+        display: inline-block;
+        font-size: 15px;
+        padding: 15px;
+    }
+
+
+    .text-white {
+        color: white;
+        text-align: center;
+    }
+
+    .center-navbar {
+        font-size: 16px;
+    }
+
+    /* .footerDiv {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #434040; 
+        color: white; 
+        padding: 1px;
+        text-align: center;
+        z-index: 1000;
+    } */
+
+    #footer{
+        font-size:smaller;
+        background-color: #434040; 
+        padding: 1px;
+    }
+
+    .card-body{
+        width: 12rem;
+        height: 8rem;
+    }
+
+    h2, p {
+        text-align: center;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control::placeholder {
+        text-align: center;
+    }
+
+ 
+    .form-control {
+        width: 60%; 
+        margin: 0 auto; 
+    }
+
+    .btn {
+        display: block;
+        margin: 0 auto;
+    }
+
+   
+    label {
+        text-align: center;
+        margin-bottom: 15px;
+        width: 60%;
+        margin: 0 auto;
+        display: block;
+    }
+
+  
+
