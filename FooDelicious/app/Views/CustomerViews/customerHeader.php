@@ -15,23 +15,28 @@
 <header class="headerNav center-navbar">
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid">
-        <a href="<?php echo base_url(); ?>/"><img src="<?= base_url('assets/images/site/logo1.png') ?>" alt="Logo"></a>
+        <a href="<?php echo base_url(); ?>/AdminHomeView"><img src="<?= base_url('assets/images/site/logo1.png') ?>" alt="Logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/AdminHomeView">Home</a>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Browse Products</a>
+                    <a class="nav-link text-white" href="#">Browse All Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Reviews</a>
+                    <a class="nav-link text-white" href="#">My Orders</a>
                 </li>
-                
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="<?php echo base_url(); ?>/logIn">Log-In/Register</a>
+                    <a class="nav-link text-white" href="#">Basket/Checkout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="<?php echo base_url(); ?>/logout">Log Out</a>
                 </li>
             </ul>
             </div>

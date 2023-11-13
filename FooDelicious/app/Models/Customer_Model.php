@@ -5,7 +5,7 @@ use CodeIgniter\Model;
     class Customer_Model extends Model
     {
         protected $table = 'customers';
-        protected $allowedFields = ['customerNumber', 'customerName', 'contactLastName', 'contactFirstName', 'phone','addressLine1','addressLine2','city','postalCode','country','creditLimit','email'.'password'];
+        protected $allowedFields = ['customerNumber', 'customerName', 'contactLastName', 'contactFirstName', 'phone','addressLine1','addressLine2','city','postalCode','country','creditLimit','email','password'];
 
         public function getAllCustomers() {
             return $this->findAll();
@@ -20,6 +20,12 @@ use CodeIgniter\Model;
         public function getCustomerbyID($id) {
             return $this->asArray()
             ->where(['customerNumber' => $id])
+            ->first();
+        }
+
+        public function getCustomerbyEmail($email) {
+            return $this->asArray()
+            ->where(['email' => $email])
             ->first();
         }
 

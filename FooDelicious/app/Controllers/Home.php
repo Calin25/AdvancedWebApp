@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\User_Model;
+use App\Models\Customer_Model;
 
 class Home extends BaseController
 {
@@ -13,18 +14,7 @@ class Home extends BaseController
         . view('templates/footer');
     } 
 
-    public function AdminHomeView() {
-        return view('AdministratorViews/adminHeader')
-        . view('AdministratorViews/administratorHomeView')
-        . view('templates/footer');
-    } 
-
-    public function MemberHomeView() {
-        return view('MemberViews/MemberHeader')
-        . view('MemberViews/MemberHomeView')
-        . view('templates/footer');
-    } 
-
+    //Log out function - End Session
     public function logout(){
 
         $session = \Config\Services::session();
@@ -36,12 +26,13 @@ class Home extends BaseController
 
     }
 
+    //Register New Customer function
     public function register() {
         $data = [];
         $msg = "";
 
             if ($this->request->getMethod() == 'post') {
-            $model = new User_Model;
+            $model = new Customer_Model;
             helper(['form']);
 
             $validation = \Config\Services::validation();
@@ -50,15 +41,28 @@ class Home extends BaseController
             $validation->setRules([
                 'firstname' => 'required',
                 'lastname' => 'required',
+                'addressLine1' => 'required',
+                'addressLine2' => 'required',
+                'city' => 'required',
+                'country' => 'required',
+                'postcode' => 'required',
                 'email' => 'required|valid_email|is_unique[users.email]',
                 'password1' => 'required|min_length[6]',
                 'password2' => 'required|matches[password1]',
             ]);
-            $newUser = ['firstName' => $_POST['firstname'],
-            'lastName' => $_POST['lastname'],
+            $newUser = [
+            'customerName' => $_POST['companyName'],
+            'contactFirstName' => $_POST['firstname'],
+            'contactLastName' => $_POST['lastname'],
+            'phone' => $_POST['phone'],
+            'addressLine1' => $_POST['addressLine1'],
+            'addressLine2' => $_POST['addressLine2'],
+            'city' => $_POST['city'],
+            'country' => $_POST['country'],
+            'postalCode' => $_POST['postCode'],
             'email' => $_POST['email'],
-            'password' => password_hash($_POST['password1'], PASSWORD_DEFAULT),
-            'usertype' => 'Member'];
+            'creditLimit' => 0,
+            'password' => password_hash($_POST['password1'], PASSWORD_DEFAULT)];
             
             if($model->save($newUser)){
                 $msg = "<br><br>Successfully Registered<br><br>";
@@ -78,63 +82,81 @@ class Home extends BaseController
         . view('templates/footer');
     } 
 
-    public function logIn()
-    {
-        $model = new User_Model;
+    //Log in for Admin or Customer - If successfull, switch statement used to redirect to appropriate controllers & views
+    public function logIn(){
+        $session = session();
+        
         $msg = "";
         helper(['form']);
-    
+
         if ($this->request->getMethod() == 'post') {
-    
+
             $validation = \Config\Services::validation();
-    
+
             $validation->setRules([
                 'email' => 'required|valid_email',
                 'password' => 'required',
+                'userCheck' => 'required'
             ]);
-    
-            if ($validation->withRequest($this->request)->run()) {
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-    
-                $user = $model->getUserByEmail($email);
-    
-                if (password_verify($password, $user['password'])) {
-                    $msg = "Login successful";
-                    $usertype = $user['usertype'];
-                    switch ($usertype) {
-                        case 'Administrator':
-                            return view('AdministratorViews/adminHeader')
-                            . view('AdministratorViews/administratorHomeView')
-                            . view('templates/footer');
-                            break;
-                        case 'Member':
-                            return view('MemberViews/MemberHeader')
-                            . view('MemberViews/MemberHomeView')
-                            . view('templates/footer');
-                            break;
-                        default:
-                           
+            $userCheck = $_POST['userCheck'];
+
+            switch($userCheck) {
+                case 'Administrator':
+                    if ($validation->withRequest($this->request)->run()) {
+                        $userModel = new User_Model;
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+                        
+                        $user = $userModel->getUserByEmail($email);
+        
+                        if (!empty($user) && password_verify($password, $user['password'])) {
+                            $msg = "Login successful";
+                            
+                            if ($userCheck == 'Administrator') {
+                                // Set session data for administrator
+                                $session->set('userType', 'Administrator');
+        
+                                return redirect()->to(base_url('/AdminHomeView'));
+                            }
+                        } else {
+                            $msg = "Incorrect email or password";
+                        }
                     }
-                } 
-            } else {
-                
-                $msg = "Incorrect email or password";
+                    break;
+
+                case 'Customer':
+                    $userModel = new Customer_Model;
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+
+                    $user = $userModel->getCustomerbyEmail($email);
+
+                    if (!empty($user) && password_verify($password, $user['password'])) {
+                        $msg = "Login successful";
+                        
+                        if ($userCheck == 'Customer') {
+                            // Set session data for customer
+                            $session->set('userType', 'Customer');
+
+                            return redirect()->to(base_url('/CustomerHomeView'));
+                        }
+                    } else {
+                        $msg = "Incorrect email or password";
+                    }
+                    break;
             }
         }
-    
+
         $data['message'] = $msg;
-    
+
         return view('templates/HomeHeader')
-            . view('displayMessageView',$data)
+            . view('displayMessageView', $data)
             . view('logIn', $data)
             . view('templates/footer');
-    }
+    }     
+}
     
-    
-    
-    
+        
     
     
 
-}

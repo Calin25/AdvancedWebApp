@@ -14,9 +14,40 @@
             </div>
 
             <div class="form-group">
+                <label for="firstname">Company Name:</label>
+                <input type="text" class="form-control" id="companyName" name="companyName" aria-describedby="name" placeholder="Enter Company Name">
+            </div>
+
+            <div class="form-group">
+                <label class="labelStyle" for="addressLine1">Address Line 1:</label>
+                <input type="text" class="form-control" id="addressLine1" name="addressLine1" aria-describedby="name" placeholder="Enter Address Line 1">
+            </div>
+            <div class="form-group">
+                <label class="labelStyle" for="addressLine2">Address Line 2:</label>
+                <input type="text" class="form-control" id="addressLine2" name="addressLine2" aria-describedby="name" placeholder="Enter Address Line 2">
+            </div>
+            <div class="form-group">
+                <label class="labelStyle" for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="city" aria-describedby="name" placeholder="Enter City">
+            </div>
+            <div class="form-group">
+                <label class="labelStyle" for="country">Country:</label>
+                <input type="text" class="form-control" id="country" name="country" aria-describedby="name" placeholder="Enter Country">
+            </div>
+            <div class="form-group">
+                <label class="labelStyle" for="postCode">Post Code:</label>
+                <input type="text" class="form-control" id="postCode" name="postCode" aria-describedby="name" placeholder="Enter Post Code">
+            </div>
+            <div class="form-group">
+                <label class="labelStyle" for="postCode">Phone:</label>
+                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="name" placeholder="Enter Phone Number">
+            </div>
+
+            <div class="form-group">
                 <label class="labelStyle" for="email">Email Address:</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address">
             </div>
+
 
             <div class="form-group">
                 <label class="labelStyle" for="password1">Password:</label>
