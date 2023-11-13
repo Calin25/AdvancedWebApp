@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\User_Model;
+use App\Models\Administrator_Model;
 use App\Models\Customer_Model;
 
 class Home extends BaseController
@@ -103,7 +103,7 @@ class Home extends BaseController
             switch($userCheck) {
                 case 'Administrator':
                     if ($validation->withRequest($this->request)->run()) {
-                        $userModel = new User_Model;
+                        $userModel = new Administrator_Model;
                         $email = $_POST['email'];
                         $password = $_POST['password'];
                         

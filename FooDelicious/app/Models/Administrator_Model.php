@@ -2,10 +2,10 @@
 use CodeIgniter\Model;
 
     //Model Class for User
-    class User_Model extends Model
+    class Administrator_Model extends Model
     {
-        protected $table = 'users';
-        protected $allowedFields = ['memberID', 'firstName', 'lastName', 'email', 'password','usertype'];
+        protected $table = 'administrator';
+        protected $allowedFields = ['adminId', 'firstName', 'lastName', 'email', 'password','usertype'];
 
         public function getAllUsers() {
             return $this->findAll();
@@ -13,13 +13,13 @@ use CodeIgniter\Model;
 
         public function deleteUser($id) {
             $builder = $this->builder();
-            $builder->delete(['memberID' => $id]);
+            $builder->delete(['adminId' => $id]);
             return $builder;
         }
 
         public function getUserByID($id) {
             return $this->asArray()
-            ->where(['memberID' => $id])
+            ->where(['adminId' => $id])
             ->first();
         }
 
@@ -31,7 +31,7 @@ use CodeIgniter\Model;
 
         public function updateUser($newData, $id) {
             $builder = $this->builder();
-                $builder->where('memberID', $id);
+                $builder->where('adminId', $id);
             $builder->update($newData);
                 return $builder;
         }
