@@ -90,62 +90,70 @@ class Home extends BaseController
         helper(['form']);
 
         if ($this->request->getMethod() == 'post') {
+            
+                //From Codeigniter Validation Class
+                $validation = \Config\Services::validation();
 
-            $validation = \Config\Services::validation();
+                $validation->setRules([
+                    'email' => 'required|valid_email',
+                    'password' => 'required',
+                    'userCheck' => 'required'
+                ]);
 
-            $validation->setRules([
-                'email' => 'required|valid_email',
-                'password' => 'required',
-                'userCheck' => 'required'
-            ]);
-            $userCheck = $_POST['userCheck'];
+                 //need a check to see if empty - if statement not working
+                $userCheck = $_POST['userCheck'];
+            
+                switch($userCheck) {
+                    case 'Administrator':
+                        if ($validation->withRequest($this->request)->run()) {
+                            $userModel = new Administrator_Model;
+                            $email = $_POST['email'];
+                            $password = $_POST['password'];
+                            
+                            $user = $userModel->getUserByEmail($email);
+            
+                            if (!empty($user) && password_verify($password, $user['password'])) {
+                                $msg = "Login successful";
+                                
+                                if ($userCheck == 'Administrator') {
+                                    // Set session data for administrator
+                                    $session->set('userType', 'Administrator');
+                                    $session->set('email', $email);
+            
+                                    return redirect()->to(base_url('/AdminHomeView'));
+                                }
+                            } else {
+                                $msg = "Incorrect email or password";
+                            }
+                        }
+                        break;
 
-            switch($userCheck) {
-                case 'Administrator':
-                    if ($validation->withRequest($this->request)->run()) {
-                        $userModel = new Administrator_Model;
+                    case 'Customer':
+                        $userModel = new Customer_Model;
                         $email = $_POST['email'];
                         $password = $_POST['password'];
-                        
-                        $user = $userModel->getUserByEmail($email);
-        
+
+                        $user = $userModel->getCustomerbyEmail($email);
+
                         if (!empty($user) && password_verify($password, $user['password'])) {
                             $msg = "Login successful";
                             
-                            if ($userCheck == 'Administrator') {
-                                // Set session data for administrator
-                                $session->set('userType', 'Administrator');
-        
-                                return redirect()->to(base_url('/AdminHomeView'));
+                            if ($userCheck == 'Customer') {
+                                // Set session data for customer
+                                $session->set('userType', 'Customer');
+                                $session->set('email', $email);
+
+                                return redirect()->to(base_url('/CustomerHomeView'));
                             }
                         } else {
                             $msg = "Incorrect email or password";
                         }
+                        break;
                     }
-                    break;
 
-                case 'Customer':
-                    $userModel = new Customer_Model;
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
+                }
+    
 
-                    $user = $userModel->getCustomerbyEmail($email);
-
-                    if (!empty($user) && password_verify($password, $user['password'])) {
-                        $msg = "Login successful";
-                        
-                        if ($userCheck == 'Customer') {
-                            // Set session data for customer
-                            $session->set('userType', 'Customer');
-
-                            return redirect()->to(base_url('/CustomerHomeView'));
-                        }
-                    } else {
-                        $msg = "Incorrect email or password";
-                    }
-                    break;
-            }
-        }
 
         $data['message'] = $msg;
 
@@ -161,13 +169,7 @@ class Home extends BaseController
         . view('templates/footer');
     }
 
-    public function listProducts() {
-        $model = new Author_Model;
-        $authorData = ['author' => $model->paginate(3), 'pager' => $model->pager];
-        return view ('templates/header', $authorData)
-        . view('authorsList')
-        . view ('templates/footer');
-    }
+    
 }
     
         

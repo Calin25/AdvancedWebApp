@@ -60,11 +60,11 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <label><button type="submit" class="btn btn-primary">Submit</button></label>
             </div>
 
             <div class="form-group">
-                <a href="<?php echo base_url();?>/logIn" class="btn btn-secondary">Log-In</a>
+            <button type="submit"><a href="<?php echo base_url();?>/logIn" class="btn btn-primary">Log-In</a></button>
             </div>
         </form>
         <br>

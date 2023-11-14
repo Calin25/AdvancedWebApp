@@ -42,10 +42,15 @@ $routes->match(['get', 'post'], 'logIn', 'Home::logIn');
 $routes->match(['get', 'post'], 'register', 'Home::register');
 $routes->get('logout', 'Home::logout');
 
-//Products
+//Products ListOfVeg
 $routes->get('BrowseProducts', 'Home::BrowseProducts');
 $routes->get('ListOfBakedGoods', 'ProductController::ListOfBakedGoods');
 $routes->get('ListOfEggsDairyView', 'ProductController::ListOfEggsDairyView');
+$routes->get('ListOfExoticFruits', 'ProductController::ListOfExoticFruits');
+$routes->get('ListofFruits', 'ProductController::ListofFruits');
+$routes->get('ListOfJams', 'ProductController::ListOfJams');
+$routes->get('ListOfSalads', 'ProductController::ListOfSalads');
+$routes->get('ListOfVeg', 'ProductController::ListOfVeg');
 
 //Administrator
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');

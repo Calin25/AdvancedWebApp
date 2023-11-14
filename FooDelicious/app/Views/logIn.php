@@ -16,7 +16,7 @@
             </div>
             <label><button type="submit" class="btn btn-primary">Submit</button></label>
 
-            <label><a href="<?php echo base_url();?>/register" class="btn btn-secondary">Register</a></label>
+            <button type="submit"><a href="<?php echo base_url();?>/register" class="btn btn-primary">Register</a></button>
         </form>
     </div>
 </div>
