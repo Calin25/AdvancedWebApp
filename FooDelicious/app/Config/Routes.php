@@ -41,7 +41,11 @@ $routes->get('/', 'Home::index');
 $routes->match(['get', 'post'], 'logIn', 'Home::logIn');
 $routes->match(['get', 'post'], 'register', 'Home::register');
 $routes->get('logout', 'Home::logout');
+
+//Products
 $routes->get('BrowseProducts', 'Home::BrowseProducts');
+$routes->get('ListOfBakedGoods', 'ProductController::ListOfBakedGoods');
+$routes->get('ListOfEggsDairyView', 'ProductController::ListOfEggsDairyView');
 
 //Administrator
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');

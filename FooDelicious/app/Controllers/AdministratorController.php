@@ -10,8 +10,4 @@ class AdministratorController extends BaseController
         . view('AdministratorViews/administratorHomeView')
         . view('templates/footer');
     } 
-
-    
-    
-
 }
