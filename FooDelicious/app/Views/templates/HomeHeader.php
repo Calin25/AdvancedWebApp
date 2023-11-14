@@ -24,7 +24,7 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/">Home</a>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Browse Products</a>
+                    <a class="nav-link text-white" href="<?php echo base_url(); ?>/BrowseProducts">Browse Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Reviews</a>

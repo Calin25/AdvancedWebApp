@@ -33,7 +33,7 @@
                     <a class="nav-link text-white" href="#">Basket/Checkout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">My Profile</a>
+                    <a class="nav-link text-white" href="#">My Account</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/logout">Log Out</a>

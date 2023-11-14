@@ -37,10 +37,11 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-
+//General
 $routes->match(['get', 'post'], 'logIn', 'Home::logIn');
 $routes->match(['get', 'post'], 'register', 'Home::register');
 $routes->get('logout', 'Home::logout');
+$routes->get('BrowseProducts', 'Home::BrowseProducts');
 
 //Administrator
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');

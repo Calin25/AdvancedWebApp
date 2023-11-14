@@ -154,6 +154,20 @@ class Home extends BaseController
             . view('logIn', $data)
             . view('templates/footer');
     }     
+
+    public function BrowseProducts(){
+        return view('templates/HomeHeader')
+        . view('GeneralView/BrowseProductsView')
+        . view('templates/footer');
+    }
+
+    public function listProducts() {
+        $model = new Author_Model;
+        $authorData = ['author' => $model->paginate(3), 'pager' => $model->pager];
+        return view ('templates/header', $authorData)
+        . view('authorsList')
+        . view ('templates/footer');
+    }
 }
     
         
