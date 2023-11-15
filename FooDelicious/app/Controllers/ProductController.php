@@ -163,7 +163,7 @@ class ProductController extends BaseController
 
     public function drillDownProducts($id) { 
 		$model = new Products_Model(); 
-		$productData['product'] = $model->getProductByProduceCode($id); 
+		$productData['product'] = $model->getProductByIDCategory($id); 
 		return view ('templates/HomeHeader', $productData) 
 			. view ('GeneralView/ProductViews/drillDownProduct') 
 			. view ('templates/footer'); 

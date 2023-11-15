@@ -46,11 +46,12 @@ class Home extends BaseController
     public function register() {
         $data = [];
         $msg = "";
-
+            
             if ($this->request->getMethod() == 'post') {
             $model = new Customer_Model;
             helper(['form']);
-
+            
+            //Code igniter validdator
             $validation = \Config\Services::validation();
 
             // Set validation rules
@@ -98,6 +99,7 @@ class Home extends BaseController
         . view('templates/footer');
     } 
 
+    //salting - 
     //Log in for Admin or Customer - If successfull, switch statement used to redirect to appropriate controllers & views
     public function logIn(){
         $session = session();
@@ -117,7 +119,7 @@ class Home extends BaseController
                     'userCheck' => 'required'
                 ]);
 
-                 //need a check to see if empty - if statement not working
+                 //need a check to see if empty - if statement not working TBD
                 $userCheck = $_POST['userCheck'];
                 if(!empty($userCheck)){ // If check box not select/empty - Enter switch & check if valid
                 switch($userCheck) {
