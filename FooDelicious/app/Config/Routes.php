@@ -51,6 +51,9 @@ $routes->get('ListofFruits', 'ProductController::ListofFruits');
 $routes->get('ListOfJams', 'ProductController::ListOfJams');
 $routes->get('ListOfSalads', 'ProductController::ListOfSalads');
 $routes->get('ListOfVeg', 'ProductController::ListOfVeg');
+$routes->get('ListAllProducts', 'ProductController::ListAllProducts');
+
+$routes->get('drillDownProducts/(:any)', 'ProductController::drillDownProducts/$1');
 
 //Administrator
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');

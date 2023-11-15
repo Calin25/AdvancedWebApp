@@ -6,6 +6,22 @@ use App\Models\Customer_Model;
 
 class Home extends BaseController
 {
+    public function displaySessionData() {
+
+		//load the session
+		$session = session();
+
+		echo "Data currently stored in the session<br>";
+		echo "Session ID: " 			. session_id() 			. "<br>";
+		echo "User Name: " 				. $session->username	. "<br>";
+		echo "Author ID: " 				. $session->authorID 	. "<br>"; 
+		echo "Authors First Name: " 	. $session->firstName	. "<br>"; 
+		echo "Authors Last Name: " 		. $session->lastName 	. "<br>"; 
+		
+		//display flash data
+		echo "<br><br>Flashdata can be styled and displayed in a view as a message<br>";
+		echo "From Flashdata ... ".session()->get("success");
+	}
     
     public function index() {
 
@@ -91,9 +107,10 @@ class Home extends BaseController
 
         if ($this->request->getMethod() == 'post') {
             
-                //From Codeigniter Validation Class
+                //From Codeigniter Validation Library
                 $validation = \Config\Services::validation();
 
+                //Validation Rules
                 $validation->setRules([
                     'email' => 'required|valid_email',
                     'password' => 'required',
@@ -102,9 +119,10 @@ class Home extends BaseController
 
                  //need a check to see if empty - if statement not working
                 $userCheck = $_POST['userCheck'];
-            
+                if(!empty($userCheck)){ // If check box not select/empty - Enter switch & check if valid
                 switch($userCheck) {
                     case 'Administrator':
+                        //Validate data - If validate - true - Codeifniter Validation
                         if ($validation->withRequest($this->request)->run()) {
                             $userModel = new Administrator_Model;
                             $email = $_POST['email'];
@@ -126,6 +144,9 @@ class Home extends BaseController
                                 $msg = "Incorrect email or password";
                             }
                         }
+                        else{
+                            $msg = "Incorrect email or password";
+                        }
                         break;
 
                     case 'Customer':
@@ -145,13 +166,24 @@ class Home extends BaseController
 
                                 return redirect()->to(base_url('/CustomerHomeView'));
                             }
-                        } else {
-                            $msg = "Incorrect email or password";
-                        }
+                            else{
+                                $msg = "Incorrect email or password";
+                            }
+                            }   
+                            else {
+                                $msg = "Incorrect email or password";
+                            }
+                        
                         break;
                     }
 
                 }
+            }
+            else{
+                $msg = "Please Choose Administrator or Customer First";
+            }
+            
+           
     
 
 

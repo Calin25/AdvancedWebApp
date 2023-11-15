@@ -17,6 +17,12 @@ use CodeIgniter\Model;
             return $builder;
         }
 
+        public function getProductByProduceCode($pID) {
+            return $this->asArray()
+            ->where(['produceCode' => $pID])
+            ->first();
+        }
+
         public function getProductByIDCategory($categoryCode) {
             return $this->asArray()
             ->where(['category' => $categoryCode])

@@ -21,7 +21,7 @@
     <th align="center ">Bulk Sale Price</th>
     <th align="center ">Image</th>
 </tr>
-<?php foreach($categoryProducts as $row){?>
+<?php foreach($produceCode as $row){?>
     <tr>
     <td><?php echo $row['produceCode'];?></td>
     <td><?php echo $row['description'];?></td>
@@ -34,14 +34,14 @@
     
     <td><img src="<?php echo base_url(); ?>/assets/images/products/thumbs/<?=
     $row['photo'] ?>"/>
-       <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> View Product</a></td>
+     <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> View Product</a></td>
      
     </tr>
 
 <?php }?>
 </table>
 
-    <div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center">
         <?php if ($pager)
         echo $pager->links();
         ?>
