@@ -14,9 +14,10 @@ class Home extends BaseController
 		echo "Data currently stored in the session<br>";
 		echo "Session ID: " 			. session_id() 			. "<br>";
 		echo "User Name: " 				. $session->username	. "<br>";
-		echo "Author ID: " 				. $session->authorID 	. "<br>"; 
-		echo "Authors First Name: " 	. $session->firstName	. "<br>"; 
-		echo "Authors Last Name: " 		. $session->lastName 	. "<br>"; 
+		echo "User ID: " 				. $session->userID 	. "<br>"; 
+		echo "User First Name: " 	. $session->firstName	. "<br>"; 
+		echo "User Last Name: " 		. $session->lastName 	. "<br>"; 
+        echo "UserType: " 		. $session->userType 	. "<br>"; 
 		
 		//display flash data
 		echo "<br><br>Flashdata can be styled and displayed in a view as a message<br>";
@@ -79,7 +80,7 @@ class Home extends BaseController
             'postalCode' => $_POST['postCode'],
             'email' => $_POST['email'],
             'creditLimit' => 0,
-            'password' => password_hash($_POST['password1'], PASSWORD_DEFAULT)];
+            'password' => password_hash($_POST['password1'], PASSWORD_BCRYPT)]; // Other hashing algorithms - md5 - 32 char password - Using BCRYPT - 60 Char password
             
             if($model->save($newUser)){
                 $msg = "<br><br>Successfully Registered<br><br>";
@@ -119,8 +120,12 @@ class Home extends BaseController
                     'userCheck' => 'required'
                 ]);
 
-                 //need a check to see if empty - if statement not working TBD
-                $userCheck = $_POST['userCheck'];
+                 //need a check to see if empty - 
+                 $userCheck = $this->request->getPost('userCheck');
+                if(empty($userCheck)){
+                    $userCheck = 'Customer';
+                }
+                
                 if(!empty($userCheck)){ // If check box not select/empty - Enter switch & check if valid
                 switch($userCheck) {
                     case 'Administrator':
@@ -149,8 +154,8 @@ class Home extends BaseController
                         else{
                             $msg = "Incorrect email or password";
                         }
-                        break;
-
+                        break;   
+                        
                     case 'Customer':
                         $userModel = new Customer_Model;
                         $email = $_POST['email'];
@@ -160,34 +165,24 @@ class Home extends BaseController
 
                         if (!empty($user) && password_verify($password, $user['password'])) {
                             $msg = "Login successful";
-                            
-                            if ($userCheck == 'Customer') {
                                 // Set session data for customer
                                 $session->set('userType', 'Customer');
                                 $session->set('email', $email);
 
                                 return redirect()->to(base_url('/CustomerHomeView'));
-                            }
-                            else{
-                                $msg = "Incorrect email or password";
-                            }
-                            }   
-                            else {
-                                $msg = "Incorrect email or password";
-                            }
-                        
+                            
+                            }  
+                        else{
+                            $msg = "Incorrect email or password";
+                        } 
                         break;
+                        
                     }
+                    
 
                 }
             }
-            else{
-                $msg = "Please Choose Administrator or Customer First";
-            }
             
-           
-    
-
 
         $data['message'] = $msg;
 
@@ -197,11 +192,11 @@ class Home extends BaseController
             . view('templates/footer');
     }     
 
-    public function BrowseProducts(){
-        return view('templates/HomeHeader')
-        . view('GeneralView/BrowseProductsView')
-        . view('templates/footer');
-    }
+    // public function BrowseProducts(){
+    //     return view('templates/HomeHeader')
+    //     . view('GeneralView/BrowseProductsView')
+    //     . view('templates/footer');
+    // }
 
     
 }

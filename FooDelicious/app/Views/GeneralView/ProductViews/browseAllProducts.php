@@ -1,4 +1,4 @@
-<h1 class="center-text"> List of Eggs & Dairy Products </h1>
+<h1 class="center-text"> All Products</h1>
 <style>
     table {
         margin-left: auto;
@@ -27,14 +27,12 @@
     <td><?php echo $row['description'];?></td>
     <td><?php echo $row['category'];?></td>
     <td><?php echo $row['supplier'];?></td>
-    <td><?php echo $row['quantityInStock'];?></td>
-    <td><?php echo $row['bulkBuyPrice'];?></td>
     <td><?php echo $row['bulkSalePrice'];?></td>
     <td><?php echo $row['photo'];?></td>
     
     <td><img src="<?php echo base_url(); ?>/assets/images/products/thumbs/<?=
     $row['photo'] ?>"/>
-     <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> View Product</a></td>
+          <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> <button>View Product</button></a></td>
      
     </tr>
 
@@ -45,4 +43,4 @@
         <?php if ($pager)
         echo $pager->links();
         ?>
-    </div>
+</div>

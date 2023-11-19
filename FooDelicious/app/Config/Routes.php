@@ -42,8 +42,9 @@ $routes->match(['get', 'post'], 'logIn', 'Home::logIn');
 $routes->match(['get', 'post'], 'register', 'Home::register');
 $routes->get('logout', 'Home::logout');
 
-//Products ListOfVeg
-$routes->get('BrowseProducts', 'Home::BrowseProducts');
+//Products 
+$routes->get('deleteProduct/(:any)', 'ProductController::deleteProduct/$1');
+$routes->get('BrowseProducts', 'ProductController::BrowseProducts');
 $routes->get('ListOfBakedGoods', 'ProductController::ListOfBakedGoods');
 $routes->get('ListOfEggsDairyView', 'ProductController::ListOfEggsDairyView');
 $routes->get('ListOfExoticFruits', 'ProductController::ListOfExoticFruits');
@@ -52,11 +53,12 @@ $routes->get('ListOfJams', 'ProductController::ListOfJams');
 $routes->get('ListOfSalads', 'ProductController::ListOfSalads');
 $routes->get('ListOfVeg', 'ProductController::ListOfVeg');
 $routes->get('ListAllProducts', 'ProductController::ListAllProducts');
-
 $routes->get('drillDownProducts/(:any)', 'ProductController::drillDownProducts/$1');
 
 //Administrator
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');
+$routes->get('ManageProducts', 'AdministratorController::ManageProducts');
+
 
 //Customer
 $routes->get('CustomerHomeView', 'CustomerController::CustomerHomeView');

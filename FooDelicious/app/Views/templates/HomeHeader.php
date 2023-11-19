@@ -26,9 +26,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/BrowseProducts">Browse Products</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Reviews</a>
-                </li>
                 
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/logIn">Log-In/Register</a>

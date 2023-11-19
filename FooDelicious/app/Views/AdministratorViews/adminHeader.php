@@ -24,7 +24,7 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/AdminHomeView">Home</a>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Manage Products</a>
+                <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/ManageProducts">Manage Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Manage Orders</a>

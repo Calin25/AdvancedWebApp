@@ -1,4 +1,4 @@
-<h1 class="center-text"> List of Eggs & Dairy Products </h1>
+<h1 class="center-text"> Fruits</h1>
 <style>
     table {
         margin-left: auto;
@@ -34,7 +34,8 @@
     
     <td><img src="<?php echo base_url(); ?>/assets/images/products/thumbs/<?=
     $row['photo'] ?>"/>
-        <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> <button>View Product</button></a></td>
+      <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> <button>View Product</button></a></td>
+
      
     </tr>
 
