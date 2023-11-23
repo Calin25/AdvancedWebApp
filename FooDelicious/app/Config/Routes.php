@@ -55,13 +55,14 @@ $routes->get('ListOfVeg', 'ProductController::ListOfVeg');
 $routes->get('ListAllProducts', 'ProductController::ListAllProducts');
 $routes->get('drillDownProducts/(:any)', 'ProductController::drillDownProducts/$1');
 
-//Administrator
+//Administrator //CustomerBrowseProducts
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');
 $routes->get('ManageProducts', 'AdministratorController::ManageProducts');
 
 
 //Customer
 $routes->get('CustomerHomeView', 'CustomerController::CustomerHomeView');
+$routes->get('CustomerBrowseProducts', 'CustomerController::CustomerBrowseProducts');
 
 /*
  * --------------------------------------------------------------------

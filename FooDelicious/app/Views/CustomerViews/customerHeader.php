@@ -22,9 +22,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/AdminHomeView">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/CustomerHomeView">Home</a>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Browse All Products</a>
+                <a class="nav-link text-white" href="<?php echo base_url(); ?>/CustomerBrowseProducts">Browse Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">My Orders</a>

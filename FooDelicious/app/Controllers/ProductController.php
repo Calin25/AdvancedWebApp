@@ -50,8 +50,8 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                        . view('CustomerViews/customerBrowseProducts')
                         . view('templates/footer');
                     break;
 
@@ -86,7 +86,7 @@ class ProductController extends BaseController
 
                 case 'Customer':
                     return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                        . view('CustomerViews/browseAllProducts')
                         . view('templates/footer');
                     break;
 
@@ -322,8 +322,8 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $productData)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $productData)
+                        . view('CustomerViews/customerDrillDown')
                         . view('templates/footer');
                     break;
 

@@ -135,6 +135,7 @@ class Home extends BaseController
                             $email = $_POST['email'];
                             $password = $_POST['password'];
                             
+                            //Get user Data & store - Access user data & store in session
                             $user = $userModel->getUserByEmail($email);
             
                             if (!empty($user) && password_verify($password, $user['password'])) {
@@ -142,6 +143,8 @@ class Home extends BaseController
                                 
                                 if ($userCheck == 'Administrator') {
                                     // Set session data for administrator
+                                    $userID = $user['adminId'];
+                                    $session->set('userID', $userID);
                                     $session->set('userType', 'Administrator');
                                     $session->set('email', $email);
             
@@ -160,12 +163,15 @@ class Home extends BaseController
                         $userModel = new Customer_Model;
                         $email = $_POST['email'];
                         $password = $_POST['password'];
-
+                        
+                        //Get user Data & store - Access user data & store in session
                         $user = $userModel->getCustomerbyEmail($email);
 
                         if (!empty($user) && password_verify($password, $user['password'])) {
                             $msg = "Login successful";
                                 // Set session data for customer
+                                $userID = $user['customerNumber'];
+                                $session->set('userID', $userID);
                                 $session->set('userType', 'Customer');
                                 $session->set('email', $email);
 
@@ -191,12 +197,6 @@ class Home extends BaseController
             . view('logIn', $data)
             . view('templates/footer');
     }     
-
-    // public function BrowseProducts(){
-    //     return view('templates/HomeHeader')
-    //     . view('GeneralView/BrowseProductsView')
-    //     . view('templates/footer');
-    // }
 
     
 }

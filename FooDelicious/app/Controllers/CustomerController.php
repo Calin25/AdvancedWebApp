@@ -10,4 +10,11 @@ class CustomerController extends BaseController
         . view('CustomerViews/CustomerHomeView')
         . view('templates/footer');
     } 
+
+    public function CustomerBrowseProducts(){
+        return view('CustomerViews/customerHeader')
+        . view('CustomerViews/customerBrowseProducts')
+        . view('templates/footer');
+    }
+    
 }

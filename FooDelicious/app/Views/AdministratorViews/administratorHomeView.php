@@ -1,5 +1,5 @@
 <?php
-
+  $userType = session()->get('userType');
 ?>
 <br><br><br><br>
 <div class="bodyContainer">
@@ -9,7 +9,7 @@
     <img src="<?= base_url('assets/images/suppliers/MamaNature.jpg') ?>" alt="Supplier Image">
       <div class="card-body">
         <h5 class="card-title">Natures Products</h5>
-        <p class="card-text">Natures Products.</p>
+        <p class="card-text">Natures Products.</p> 
       </div>
     </div>
   </div>
