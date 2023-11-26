@@ -1,5 +1,11 @@
 <?php
+  $userType = session()->get('userType');
 
+  $cookiesAccepted = isset($_COOKIE['userData']);
+
+if (!$cookiesAccepted && $userType === 'Customer') {
+    setcookie('userData', 'true', time() + 3600);
+}
 ?>
 <br><br><br><br>
 <div class="bodyContainer">
@@ -60,3 +66,13 @@
   </div>
 </div>
 </div>
+
+<?php if ($cookiesAccepted) : ?>
+    <div class="cookies-message">
+        Cookies are accepted. You can now use certain features.
+    </div>
+<?php else : ?>
+    <div class="cookies-message">
+        <a href="/acceptCookies">Accept Cookies</a>
+    </div>
+<?php endif; ?>

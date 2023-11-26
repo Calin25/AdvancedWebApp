@@ -41,6 +41,8 @@ $routes->get('/', 'Home::index');
 $routes->match(['get', 'post'], 'logIn', 'Home::logIn');
 $routes->match(['get', 'post'], 'register', 'Home::register');
 $routes->get('logout', 'Home::logout');
+$routes->get('acceptCookies', 'Home::acceptCookies');
+$routes->get('displayCookieData', 'Home::displayCookieData');
 
 //Products 
 $routes->get('deleteProduct/(:any)', 'ProductController::deleteProduct/$1');

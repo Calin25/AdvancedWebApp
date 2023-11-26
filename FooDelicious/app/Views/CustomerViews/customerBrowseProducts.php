@@ -1,45 +1,7 @@
-<h1 class="center-text"> All Products </h1>
-<style>
-    table {
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
-<table>
-    <col width="20">
-    <col width="100">
-    <col width="100">
-    <col width="100">
-    <col width="100">
-<tr>
-    <th align="center ">Produce Code</th>
-    <th align="center ">Description</th>
-    <th align="center ">Category</th>
-    <th align="center ">Supplier</th>
-    <th align="center ">Quantity</th>
-    <th align="center ">Bulk Buy Price</th>
-    <th align="center ">Bulk Sale Price</th>
-    <th align="center ">Image</th>
-</tr>
-<?php foreach($produceCode as $row){?>
-    <tr>
-    <td><?php echo $row['produceCode'];?></td>
-    <td><?php echo $row['description'];?></td>
-    <td><?php echo $row['category'];?></td>
-    <td><?php echo $row['supplier'];?></td><br><br><br><br>
+<br><br><br><br>
 
 <div class="BrowseProductsContainer">
   <div class="row row-cols-1 row-cols-md-3 g-5">
-  <div class="col">
-      <div class="card text-center card-sm">
-        <img src="<?= base_url('assets/images/suppliers/OrganicMeelick.jpg') ?>" alt="Supplier Image">
-        <div class="card-body">
-          <h6 class="card-title">Add new Product</h6>
-          <p class="card-text">Add new Products</p>
-          <a href="<?= base_url() ?>" class="btn btn-primary">Add New Products</a>
-        </div>
-      </div>
-    </div>
     <div class="col">
       <div class="card text-center card-sm">
         <img src="<?= base_url('assets/images/products/full/sourdough.jpg') ?>" alt="Supplier Image">
@@ -111,23 +73,4 @@
       </div>
     </div>
   </div>
-</div>
-
-    <td><?php echo $row['bulkSalePrice'];?></td>
-    <td><?php echo $row['photo'];?></td>
-    
-    <td><img src="<?php echo base_url(); ?>/assets/images/products/thumbs/<?=
-    $row['photo'] ?>"/>
-             <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> <button>View Product</button></a></td>
-
-     
-    </tr>
-
-<?php }?>
-</table>
-
-<div class="d-flex justify-content-center">
-        <?php if ($pager)
-        echo $pager->links();
-        ?>
 </div>

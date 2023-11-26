@@ -336,5 +336,13 @@ class ProductController extends BaseController
         }
 	}
 
+    public function editProduct($id) {
+
+    }
+
+    public function AddNewProduct($id) {
+        
+    }
+
      
 }

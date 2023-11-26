@@ -15,6 +15,9 @@ class CustomerController extends BaseController
         return view('CustomerViews/customerHeader')
         . view('CustomerViews/customerBrowseProducts')
         . view('templates/footer');
+                echo "<br>Cookie data has been saved! <a href='" .
+				base_url('displayCookieData') . 
+				"'>  Retrieve data on next page  </a>";
     }
     
 }

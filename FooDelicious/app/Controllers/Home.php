@@ -197,6 +197,17 @@ class Home extends BaseController
             . view('logIn', $data)
             . view('templates/footer');
     }     
+ 
+    public function acceptCookies() {
+        setcookie('cookiesAccepted', 'true', time() + 3600);
+        return redirect()->to('/');
+    }
+
+    public function displayCookieData() {
+        helper("cookie");
+		$output = get_cookie("userData");
+        echo $output;
+    }
 
     
 }

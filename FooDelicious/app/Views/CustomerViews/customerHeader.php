@@ -33,6 +33,10 @@
                     <a class="nav-link text-white" href="#">Basket/Checkout</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white" href="#">WishList</a> 
+                    
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" href="#">My Account</a>
                 </li>
                 <li class="nav-item">
