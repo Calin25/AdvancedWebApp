@@ -8,7 +8,7 @@
         <div class="card-body">
           <h6 class="card-title">Add new Product</h6>
           <p class="card-text">Add new Products</p>
-          <a href="<?= base_url() ?>" class="btn btn-primary">Add New Products</a>
+          <a href="<?= base_url('insertProduct') ?>" class="btn btn-primary">Add New Products</a>
         </div>
       </div>
     </div>

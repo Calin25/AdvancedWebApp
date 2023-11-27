@@ -6,6 +6,8 @@ use CodeIgniter\Model;
         protected $table = 'orders';
         protected $allowedFields = ['orderNumber', 'orderDate', 'requiredDate', 'shippedDate', 'status','comments','customerNumber'];
 
+        
+
             
     }
 ?>

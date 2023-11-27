@@ -57,9 +57,11 @@ $routes->get('ListOfVeg', 'ProductController::ListOfVeg');
 $routes->get('ListAllProducts', 'ProductController::ListAllProducts');
 $routes->get('drillDownProducts/(:any)', 'ProductController::drillDownProducts/$1');
 
-//Administrator //CustomerBrowseProducts
+//Administrator 
 $routes->get('AdminHomeView', 'AdministratorController::AdminHomeView');
 $routes->get('ManageProducts', 'AdministratorController::ManageProducts');
+$routes->match(['get', 'post'], 'insertProduct', 'ProductController::insertProduct');
+$routes->match(['get', 'post'], 'UpdateProduct/(:any)', 'ProductController::UpdateProduct/$1');
 
 
 //Customer

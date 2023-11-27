@@ -35,6 +35,12 @@ use CodeIgniter\Model;
             $builder->update($newData);
                 return $builder;
         }
+
+        public function getAllOrders($id) {
+            $builder = $this->builder();
+                $builder->where('customerNumber', $id);
+                return $builder;
+        }
             
     }
 ?>

@@ -25,7 +25,8 @@
 
 	<br>
 	<br>
-	<td><button><a href="<?php echo base_url(); ?>"> Edit </a></button></td>	
+	<td><button><a href="<?php echo base_url('UpdateProduct/'.$product['produceCode']); ?>" 
+				onclick="return checkDelete();">Edit Product </a></button></td>
 	<td><button><a href="<?php echo base_url('deleteProduct/'.$product['produceCode']); ?>" 
 				onclick="return checkDelete();">Delete Product </a></button></td>
 
