@@ -130,7 +130,12 @@
         text-align: center;
     }
 
-   
+    
+    .search-form {
+       
+        float: right;
+    }
+
     
 
   

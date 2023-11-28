@@ -29,6 +29,12 @@ use CodeIgniter\Model;
             $builder->update($newData);
                 return $builder;
         }
+
+        public function searchProduceDescription($search) { 
+            return $this->asArray() 
+                ->like('description', $search)
+                ->findAll(); 
+        }
             
     }
 ?>

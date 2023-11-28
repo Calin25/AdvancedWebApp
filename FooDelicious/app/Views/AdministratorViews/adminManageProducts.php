@@ -1,4 +1,13 @@
-<br><br><br><br>
+<br><br>
+
+<form class="search-form" action="<?= base_url() ?>" method="get">
+    <label for="search">Search Product Description:</label>
+    <input type="text" id="search" name="search" placeholder="Enter keyword"><br><br>
+    <button type="submit">Search Product Description</button>
+</form>
+<br>
+<br>
+<br>
 
 <div class="BrowseProductsContainer">
   <div class="row row-cols-1 row-cols-md-3 g-5">

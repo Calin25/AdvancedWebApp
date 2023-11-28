@@ -22,7 +22,7 @@
 	<input type="text" name="bulkSalePrice" id="bulkSalePrice" value="<?php echo $product['bulkSalePrice']?>"> 
 	
 	</br></br> Image:
-    <img src="<?php echo base_url(); ?>/assets/images/full/<?= $product['photo'] ?>"/>
+    <img src="<?php echo base_url(); ?>/assets/images/products/full/<?= $product['photo'] ?>"/>
 
         	
 	</br></br> New Image Upload:

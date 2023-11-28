@@ -488,8 +488,8 @@ class ProductController extends BaseController
 				$data['validation'] = $this->validator;
 				
 				//get original image name from hidden field in form - needed to reload the page to fix validation errors
-				$aproduct += ['prevImage'	=> $_POST['prevImage']];
-				$aproduct += ['image'		=> $_POST['prevImage']];
+				//$aproduct += ['prevImage'	=> $_POST['prevImage']];
+				//$aproduct += ['image'		=> $_POST['prevImage']];
 				
 				//reload the update author view to allow user fix the validation errors
 				//note - the errors are being passed in $data and the form data is being passed in $authorData
@@ -522,18 +522,18 @@ class ProductController extends BaseController
 					$image = \Config\Services::image()
 						->withFile($x_file)
                         ->resize(240, 159, true, 'height')
-                        ->save(FCPATH.'/assets/images/full/'.$originalName);
+                        ->save(FCPATH.'/assets/images/products/Full/'.$originalName);
 					$msg .= "<br><br>Upload done & image resized<br><br>";
 						
 					//resize to thumb format and put in thumbs folder
 					$image = \Config\Services::image()
                         ->withFile($x_file)
                         ->resize(80, 53, true, 'height')
-                        ->save(FCPATH.'/assets/images/thumbs/'.$originalName);
+                        ->save(FCPATH.'/assets/images/products/thumbs/'.$originalName);
 					$msg .= "<br><br>image resized to thumbnail<br><br>";  
         
 					//update details with new image name
-					$aproduct += ['Image' => $originalName];
+					$aproduct += ['photo' => $originalName];
 
 					//check if update to database is successful – display appropriate message
 					if ($model->updateProduct($aproduct,$id))
