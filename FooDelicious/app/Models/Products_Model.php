@@ -30,11 +30,24 @@ use CodeIgniter\Model;
                 return $builder;
         }
 
-        public function searchProduceDescription($search) { 
-            return $this->asArray() 
+        
+
+        public function searchProduceDescription($search)
+        {
+            $search = '%'.$search .'%';
+
+            
+            echo "Search Term: $search<br>";
+        
+            $result = $this->asArray()
                 ->like('description', $search)
-                ->findAll(); 
+                ->findAll();
+    
+        
+            return $result;
         }
+        
+        
             
     }
 ?>

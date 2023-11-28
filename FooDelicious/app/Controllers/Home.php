@@ -13,7 +13,7 @@ class Home extends BaseController
 
 		echo "Data currently stored in the session<br>";
 		echo "Session ID: " 			. session_id() 			. "<br>";
-		echo "User Name: " 				. $session->username	. "<br>";
+		echo "UserName: " 				. $session->username	. "<br>";
 		echo "User ID: " 				. $session->userID 	. "<br>"; 
 		echo "User First Name: " 	. $session->firstName	. "<br>"; 
 		echo "User Last Name: " 		. $session->lastName 	. "<br>"; 
@@ -25,7 +25,8 @@ class Home extends BaseController
 	}
     
     public function index() {
-
+        helper("cookie");
+        set_cookie("mycookie", "SWAD", 3600);
         return view('templates/HomeHeader')
         . view('home')
         . view('templates/footer');
@@ -147,6 +148,11 @@ class Home extends BaseController
                                     $session->set('userID', $userID);
                                     $session->set('userType', 'Administrator');
                                     $session->set('email', $email);
+
+                                    $string = session()->get('adminId') . " " . session()->get('userID') . " " . session()->get('userType') . " " . session()->get('email');
+
+                                    helper("cookie");
+                                    setcookie('adminCookie', 'true', time() + 3600);
             
                                     return redirect()->to(base_url('/AdminHomeView'));
                                 }
@@ -174,6 +180,11 @@ class Home extends BaseController
                                 $session->set('userID', $userID);
                                 $session->set('userType', 'Customer');
                                 $session->set('email', $email);
+
+                                $string = session()->get('customerNumber') . " " . session()->get('userID') . " " . session()->get('userType') . " " . session()->get('email');
+
+                                helper("cookie");
+                                setcookie('customerCookie', 'true', time() + 3600);
 
                                 return redirect()->to(base_url('/CustomerHomeView'));
                             
@@ -205,7 +216,7 @@ class Home extends BaseController
 
     public function displayCookieData() {
         helper("cookie");
-		$output = get_cookie("userData");
+        $output = get_cookie("adminCookie"); // Correct cookie name
         echo $output;
     }
 

@@ -1,12 +1,3 @@
-<?php
-  $userType = session()->get('userType');
-
-  $cookiesAccepted = isset($_COOKIE['cookiesAccepted']);
-
-if (!$cookiesAccepted && $userType === 'Customer') {
-    setcookie('cookiesAccepted', 'true', time() + 3600);
-}
-?>
 
 
 <br><br><br><br>
@@ -69,12 +60,8 @@ if (!$cookiesAccepted && $userType === 'Customer') {
 </div>
 </div>
 
-<?php if ($cookiesAccepted) : ?>
-    <div class="cookies-message">
-        Cookies are accepted. You can now use certain features.
-    </div>
-<?php else : ?>
-    <div class="cookies-message">
-        This website uses cookies. <a href="/accept-cookies">Accept Cookies</a>
-    </div>
-<?php endif; ?>
+<form class="search-form" action="<?= base_url('displayCookieData/') ?>" method="get">
+    <label for="search">View Cookies</label>
+    <button class="btn btn-primary" type="submit">View Cookies</button>
+</form>
+

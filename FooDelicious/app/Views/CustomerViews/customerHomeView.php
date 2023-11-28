@@ -7,6 +7,14 @@ if (!$cookiesAccepted && $userType === 'Customer') {
     setcookie('userData', 'true', time() + 3600);
 }
 ?>
+
+<form class="search-form" action="<?= base_url('searchProduct') ?>" method="post">
+    <label for="search">Search Product Description:</label>
+    <input type="text" id="search" name="search" placeholder="Enter keyword">
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+
 <br><br><br><br>
 <div class="bodyContainer">
 <div class="row row-cols-1 row-cols-md-3 g-5">

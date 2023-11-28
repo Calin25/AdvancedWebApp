@@ -1,10 +1,14 @@
 <br><br>
 
-<form class="search-form" action="<?= base_url() ?>" method="get">
+<form class="search-form" action="<?= base_url('searchProduct') ?>" method="post">
     <label for="search">Search Product Description:</label>
-    <input type="text" id="search" name="search" placeholder="Enter keyword"><br><br>
-    <button type="submit">Search Product Description</button>
+    <input type="text" id="search" name="search" placeholder="Enter keyword">
+    <button class="btn btn-primary" type="submit">Search</button>
 </form>
+
+
+
+
 <br>
 <br>
 <br>
@@ -93,3 +97,4 @@
     </div>
   </div>
 </div>
+

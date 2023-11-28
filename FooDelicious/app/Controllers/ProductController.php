@@ -51,7 +51,7 @@ class ProductController extends BaseController
                 case 'Customer':
 
                     return view('CustomerViews/customerHeader', $data)
-                        . view('CustomerViews/customerBrowseProducts')
+                        . view('GeneralView/ProductViews/browseAllProducts')
                         . view('templates/footer');
                     break;
 
@@ -85,8 +85,8 @@ class ProductController extends BaseController
                 break;
 
                 case 'Customer':
-                    return view('templates/HomeHeader', $data)
-                        . view('CustomerViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                    . view('GeneralView/ProductViews/BakedGoodsProductsView')
                         . view('templates/footer');
                     break;
 
@@ -120,9 +120,9 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
-                        . view('templates/footer');
+                    return view('CustomerViews/customerHeader', $data)
+                            . view('GeneralView/ProductViews/Eggs&DairyProductsView')
+                            . view('templates/footer');
                     break;
 
                 default:
@@ -153,8 +153,8 @@ class ProductController extends BaseController
                 break;
 
                 case 'Customer':
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                        . view('GeneralView/ProductViews/BakedGoodsProductsView')
                         . view('templates/footer');
                     break;
 
@@ -188,8 +188,8 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                        . view('GeneralView/ProductViews/fruitView')
                         . view('templates/footer');
                     break;
 
@@ -223,8 +223,8 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                        . view('GeneralView/ProductViews/jamsViews')
                         . view('templates/footer');
                     break;
 
@@ -258,8 +258,8 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                        . view('GeneralView/ProductViews/saladsView')
                         . view('templates/footer');
                     break;
 
@@ -293,8 +293,8 @@ class ProductController extends BaseController
 
                 case 'Customer':
 
-                    return view('templates/HomeHeader', $data)
-                        . view('GeneralView/ProductViews/browseAllProducts')
+                    return view('CustomerViews/customerHeader', $data)
+                        . view('GeneralView/ProductViews/vegView')
                         . view('templates/footer');
                     break;
 
@@ -550,6 +550,38 @@ class ProductController extends BaseController
 			}
 		}
 	}
+
+    public function searchProduct() {
+        $model = new Products_Model();
+        $search = $_POST['search'];
+        $data['categoryProducts'] = $model->searchProduceDescription($search);
+        $data['pager'] = $model->pager;
+
+        $userType = session()->get('userType');
+    
+        switch($userType){
+            case "Administrator":
+                return view('AdministratorViews/adminHeader')
+                    . view('GeneralView/userProductSearch', $data)
+                    . view('templates/footer');
+                break;
+            case "Customer":
+                return view('templates/HomeHeader', $data)
+                    . view('GeneralView/userProductSearch', $data)
+                    . view('templates/footer');
+                break;
+            default :
+                return view('templates/HomeHeader', $data)
+                    . view('GeneralView/userProductSearch', $data)
+                    . view('templates/footer');
+                break;
+        }
+        
+    }
+    
+    
+    
+    
 
      
 }

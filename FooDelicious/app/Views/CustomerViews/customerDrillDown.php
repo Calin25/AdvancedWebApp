@@ -26,6 +26,7 @@
 	<br>
 	<br>
 	<td><button><a href="<?php echo base_url(); ?>"> Add To Basket </a></button></td>	
+	<td><button><a href="<?php echo base_url(); ?>"> Add To Wishlist </a></button></td>
 
 </form>
 
