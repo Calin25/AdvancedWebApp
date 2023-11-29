@@ -145,6 +145,7 @@ class Home extends BaseController
                                 if ($userCheck == 'Administrator') {
                                     // Set session data for administrator
                                     $userID = $user['adminId'];
+                                    $session->set($userID);
                                     $session->set('userID', $userID);
                                     $session->set('userType', 'Administrator');
                                     $session->set('email', $email);
@@ -177,6 +178,7 @@ class Home extends BaseController
                             $msg = "Login successful";
                                 // Set session data for customer
                                 $userID = $user['customerNumber'];
+                                $session->set($userID);
                                 $session->set('userID', $userID);
                                 $session->set('userType', 'Customer');
                                 $session->set('email', $email);
