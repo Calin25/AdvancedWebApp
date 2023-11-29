@@ -36,11 +36,7 @@ use CodeIgniter\Model;
                 return $builder;
         }
 
-        public function getAllOrders($id) {
-            $builder = $this->builder();
-                $builder->where('customerNumber', $id);
-                return $builder;
-        }
+        
             
     }
 ?>

@@ -65,6 +65,9 @@ $routes->match(['get', 'post'], 'UpdateProduct/(:any)', 'ProductController::Upda
 
 $routes->match(['get', 'post'], 'searchProduct', 'ProductController::searchProduct');
 
+//Orders
+$routes->get('ViewMyOrders', 'OrderController::ViewMyOrders');
+
 
 
 

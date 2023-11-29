@@ -10,18 +10,18 @@ class ProductController extends BaseController
 		$msg = "";
    		$model = new Products_Model;
 
+     
 		if ($model->delProduct($categoryCode)) {
 			$msg .= "<br><br>The delete from the database has been successful<br><br>";
 		}
 		else {
 			$msg .= "<br><br>Uh oh ... problem on delete from the database<br><br>";
 		}
-				
-		//load the view to display the message
-		$data['message'] = $msg;
-		return view('AdministratorViews/adminHeader')
-            . view('displayMessageView', $data)
-            . view('templates/footer');
+
+            $data['message'] = $msg;
+            return view('AdministratorViews/adminHeader')
+                . view('displayMessageView', $data)
+                . view('templates/footer');
 	}
 
     public function BrowseProducts(){

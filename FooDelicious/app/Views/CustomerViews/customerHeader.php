@@ -27,7 +27,7 @@
                 <a class="nav-link text-white" href="<?php echo base_url(); ?>/CustomerBrowseProducts">Browse Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">My Orders</a>
+                    <a class="nav-link text-white" href="<?php echo base_url(); ?>/ViewMyOrders">My Orders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">WishList</a> 
