@@ -11,9 +11,15 @@ use CodeIgniter\Model;
         }
 
         public function delProduct($categoryCode) {
-            $builder = $this->builder();
-            $builder->delete(['produceCode' => $categoryCode]);
-            return $builder;
+            try {
+                $builder = $this->builder();
+                $builder->where('produceCode', $categoryCode);
+                $builder->delete();
+                
+                return true;
+            } catch (\Exception $e) {
+                return false; 
+            }
         }
 
         public function getProductByIDCategory($categoryCode) {

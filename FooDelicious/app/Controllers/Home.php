@@ -37,7 +37,7 @@ class Home extends BaseController
 
         $session = \Config\Services::session();
         $session->destroy();
-        sleep(2);
+        sleep(1);
         return view('templates/HomeHeader')
             . view('home')
             . view('templates/footer');
@@ -138,22 +138,24 @@ class Home extends BaseController
                             
                             //Get user Data & store - Access user data & store in session
                             $user = $userModel->getUserByEmail($email);
-            
+                            
+
                             if (!empty($user) && password_verify($password, $user['password'])) {
                                 $msg = "Login successful";
                                 
                                 if ($userCheck == 'Administrator') {
                                     // Set session data for administrator
-                                    $userID = $user['adminId'];
-                                    $session->set($userID);
-                                    $session->set('userID', $userID);
+                                    $session = \Config\Services::session();
+                                    $session->start();
+                                    
+                                    $session->set('userID', $user['adminId']);
                                     $session->set('userType', 'Administrator');
                                     $session->set('email', $email);
 
                                     $string = session()->get('adminId') . " " . session()->get('userID') . " " . session()->get('userType') . " " . session()->get('email');
 
                                     helper("cookie");
-                                    setcookie('adminCookie', 'true', time() + 3600);
+                                    setcookie('adminCookie', $string, time() + 3600);
             
                                     return redirect()->to(base_url('/AdminHomeView'));
                                 }
@@ -177,16 +179,17 @@ class Home extends BaseController
                         if (!empty($user) && password_verify($password, $user['password'])) {
                             $msg = "Login successful";
                                 // Set session data for customer
-                                $userID = $user['customerNumber'];
-                                $session->set($userID);
-                                $session->set('userID', $userID);
+                                $session = \Config\Services::session();
+                                $session->start();
+                                $session->set('customerNumber', $user['customerNumber']);
                                 $session->set('userType', 'Customer');
                                 $session->set('email', $email);
+                                
 
-                                $string = session()->get('customerNumber') . " " . session()->get('userID') . " " . session()->get('userType') . " " . session()->get('email');
+                                $string = session()->get('customerNumber') . " " . session()->get('customerNumber') . " " . session()->get('userType') . " " . session()->get('email');
 
                                 helper("cookie");
-                                setcookie('customerCookie', 'true', time() + 3600);
+                                setcookie('customerCookie', $string, time() + 3600);
 
                                 return redirect()->to(base_url('/CustomerHomeView'));
                             

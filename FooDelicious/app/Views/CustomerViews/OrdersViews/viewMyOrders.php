@@ -12,7 +12,6 @@
     <col width="100">
     <col width="100">
 <tr>
-    <th align="center ">Order Number</th>
     <th align="center ">Order Date</th>
     <th align="center ">Required Date</th>
     <th align="center ">Shipped Date</th>
@@ -21,7 +20,6 @@
 </tr>
 <?php foreach($orders as $row){?>
     <tr>
-    <td><?php echo $row['orderNumber'];?></td>
     <td><?php echo $row['orderDate'];?></td>
     <td><?php echo $row['requiredDate'];?></td>
     <td><?php echo $row['shippedDate'];?></td>
@@ -33,8 +31,4 @@
 <?php }?>
 </table>
 
-<div class="d-flex justify-content-center">
-        <?php if ($pager)
-        echo $pager->links();
-        ?>
-</div>
+

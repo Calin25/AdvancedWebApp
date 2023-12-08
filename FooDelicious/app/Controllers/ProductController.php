@@ -2,20 +2,23 @@
 
 namespace App\Controllers;
 use App\Models\Products_Model;
+use CodeIgniter\Debug\Exceptions;
+use CodeIgniter\Log\Exceptions\LogException;
+use Exception;
 
 class ProductController extends BaseController
 {
+    
 
     public function deleteProduct($categoryCode) {
 		$msg = "";
    		$model = new Products_Model;
 
-     
 		if ($model->delProduct($categoryCode)) {
 			$msg .= "<br><br>The delete from the database has been successful<br><br>";
 		}
 		else {
-			$msg .= "<br><br>Uh oh ... problem on delete from the database<br><br>";
+			$msg .= "<br><br>Delete Failed - Product is linked to a customers order<br><br>";
 		}
 
             $data['message'] = $msg;
@@ -102,6 +105,7 @@ class ProductController extends BaseController
     public function ListOfEggsDairyView()
     {
         $model = new Products_Model();
+        
         $userType = session()->get('userType');
         $categoryCode = 'Eggs & Dairy';
 
@@ -113,9 +117,9 @@ class ProductController extends BaseController
         switch($userType){
                 case 'Administrator':
 
-                return view('AdministratorViews/adminHeader', $data)
-                    . view('AdministratorViews/ManageProducts/Eggs&DairyProductsView')
-                    . view('templates/footer');
+                    return view('AdministratorViews/adminHeader', $data)
+                        . view('AdministratorViews/ManageProducts/Eggs&DairyProductsView')
+                        . view('templates/footer');
                 break;
 
                 case 'Customer':
@@ -129,7 +133,8 @@ class ProductController extends BaseController
                 
                     return view('templates/HomeHeader', $data)
                         . view('GeneralView/ProductViews/Eggs&DairyProductsView')
-                        . view('templates/footer');
+                        . view('templates/footer')
+                            .var_dump(session()->get());
                     break;
         }
     }

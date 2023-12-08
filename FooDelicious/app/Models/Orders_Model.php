@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 
         
         public function getOrders($customerNumber) {
-            return $this->asArray()
-            ->where(['customerNumber' => $customerNumber])
-            ->first();
+            return $this->select('orderDate, requiredDate, shippedDate, status, comments')
+                ->where(['customerNumber' => $customerNumber])
+                ->findAll();
         }
           
         public function insertOrder() {
