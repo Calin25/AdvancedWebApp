@@ -1,29 +1,29 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
-    class WishList_Model extends Model
+    class Basket_Model extends Model
     {
         protected $table = 'wishlist';
         protected $allowedFields = ['wishListID','produceCode','customerNumberFK'];
 
-        public function getMyWishList($customerNumber) {
+        public function getBasket($customerNumber) {
             return $this->select('produceCode')
                 ->where(['customerNumberFK' => $customerNumber])
                 ->findAll();
         }
 
-        public function insertIntoWishList($produceCode, $customerNumber)
+        public function addToBasket($produceCode)
         {
-            $existingWish = $this->where(['produceCode' => $produceCode, 'customerNumberFK' => $customerNumber])->first();
+            $existingWish = $this->where(['produceCode' => $produceCode])->first();
 
             if (!$existingWish) {
                 
                 $data = [
                     'produceCode' => $produceCode,
-                    'customerNumberFK' => $customerNumber,
                 ];
 
-                return $this->insert($data);
+                return $data;
+                
             }
 
             return false;

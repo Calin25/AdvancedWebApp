@@ -26,7 +26,14 @@
 	<br>
 	<br>
 	<td><button><a href="<?php echo base_url(); ?>"> Add To Basket </a></button></td>	
-	<td><button><a href="<?php echo base_url(); ?>"> Add To Wishlist </a></button></td>
+	<td>
+    <button>
+        <a href="<?php echo base_url('InsertIntoWishList/'.$product['produceCode']); ?>" 
+           onclick="return confirm('Are you sure you want to add this item to your wish list?');">
+            Add To Wishlist
+        </a>
+    </button>
+</td>
 
 </form>
 

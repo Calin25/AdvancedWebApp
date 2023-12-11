@@ -70,6 +70,7 @@ $routes->get('ViewMyOrders', 'OrderController::ViewMyOrders');
 
 //WishList
 $routes->get('ViewMyWishList', 'WishListController::ViewMyWishList');
+$routes->get('InsertIntoWishList/(:any)', 'WishListController::InsertIntoWishList/$1');
 
 
 

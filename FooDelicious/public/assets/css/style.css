@@ -54,18 +54,6 @@
         font-size: 16px;
     }
 
-    /* .footerDiv {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #434040; 
-        color: white; 
-        padding: 1px;
-        text-align: center;
-        z-index: 1000;
-    } */
-
     #footer{
         font-size:smaller;
         background-color: #434040; 
@@ -128,6 +116,61 @@
     .pager {
         display: block; 
         text-align: center;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .d-flex {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+        display: inline-block;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        color: #333;
+    }
+
+    .pagination .active a {
+        background-color: #4CAF50;
+        color: white;
     }
 
     

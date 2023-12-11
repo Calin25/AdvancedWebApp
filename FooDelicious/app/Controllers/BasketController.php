@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\WishList_Model;
 use App\Models\Products_Model;
+use App\Models\Basket_Model;
 
 
-class WishListController extends BaseController
+class BasketController extends BaseController
 {
-    public function ViewMyWishList()
+    public function ViewMyBasket()
     {
-        $model = new WishList_Model();
+        $model = new Basket_Model();
         $pModel = new Products_Model();
         $session = \Config\Services::session();
         $customerNumber = $session->get('customerNumber');
-        $productCodes = $model->getMyWishList($customerNumber);
+        $productCodes = $model->getBasket($customerNumber);
         
         $productCodes = array_column($productCodes, 'produceCode');
 
@@ -36,16 +36,19 @@ class WishListController extends BaseController
 
     }
 
-    public function InsertIntoWishList($produceCode){
+    public function InsertIntoBasket($produceCode){
+        $session = session()->start();
         $userID = session()->get('customerNumber');
-        $model = new WishList_Model();
+        $model = new Basket_Model();
         $msg = "";
+        $basketData = $model->insertIntoWishList($produceCode, $userID);
 
-        if($model->insertIntoWishList($produceCode, $userID)){
-            $msg = "Successfully Added to Wish List";
+        if(!empty($basketData)){
+            $session->set("BasketData",$basketData);
+            $msg = "Successfully Added to Basket";
         }
         else{
-            $msg = "Issue adding to Wish List";
+            $msg = "Issue adding to Basket";
         }
 
         $data['message'] = $msg;
