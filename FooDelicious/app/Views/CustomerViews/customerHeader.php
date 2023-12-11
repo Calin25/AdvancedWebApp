@@ -30,7 +30,7 @@
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/ViewMyOrders">My Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">WishList</a> 
+                <a class="nav-link text-white" href="<?php echo base_url(); ?>/ViewMyWishList">View Wish List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Basket/Checkout</a>

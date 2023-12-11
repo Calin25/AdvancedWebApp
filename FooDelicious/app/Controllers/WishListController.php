@@ -1,32 +1,32 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Orders_Model;
+use App\Models\WishList_Model;
+use App\Models\Products_Model;
 
 
-class OrderController extends BaseController
+class WishListController extends BaseController
 {
-    public function ViewMyOrders()
+    public function ViewMyWishList()
     {
-        $model = new Orders_Model();
+        $model = new WishList_Model();
+        $pModel = new Products_Model();
         $session = \Config\Services::session();
         $customerNumber = $session->get('customerNumber');
-        $data['orders'] = $model->getOrders($customerNumber);
+        $productCodes = $model->getMyWishList($customerNumber);
+        $data['prod'] = $pModel->where('produceCode', $productCodes)->paginate(7);
 
-        $data['sessionData'] = $session->get(); // Add this line for debugging
-
-        if (!empty($data)) {
+        if (!empty($data['prod'])) { // Update this line
             return view('CustomerViews/customerHeader', $data)
-                . view('CustomerViews/OrdersViews/viewMyOrders')
+                . view('CustomerViews/OrdersViews/ViewWishListView')
                 . view('templates/footer');
-                
         } else {
             $msg = "No Data To Display";
             $data['message'] = $msg;
             return view('CustomerViews/customerHeader')
                 . view('displayMessageView', $data)
                 . view('templates/footer');
-                
         }
+
     }
 }
