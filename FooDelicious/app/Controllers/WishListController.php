@@ -54,4 +54,43 @@ class WishListController extends BaseController
                 . view('templates/footer');
 
     }
+
+    public function drilDownProductWishList($id) { 
+        $model = new Products_Model();
+        $userType = session()->get('userType');
+        $productData['product'] = $model->getProductByIDCategory($id);
+       
+        switch($userType){
+                
+            case 'Customer':
+                return view('CustomerViews/customerHeader', $productData)
+                        . view('CustomerViews/customerDrillDownWishList')
+                        . view('templates/footer');
+                        break;
+
+            default:
+                return view('templates/HomeHeader', $productData)
+                    . view('GeneralView/ProductViews/drillDownProduct')
+                    . view('templates/footer');
+                break;
+        }
+	}
+
+    public function deleteFromWishlist($produceCode){
+        $userID = session()->get('customerNumber');
+        $model = new WishList_Model();
+        $msg = "";
+
+        if ($model->deleteFromWishList($produceCode, $userID)) {
+            $msg = "Successfully Deleted from Wish List";
+        } else {
+            $msg = "Issue deleting from Wish List";
+            
+        }
+
+        $data['message'] = $msg;
+            return view('CustomerViews/customerHeader')
+                . view('displayMessageView', $data)
+                . view('templates/footer');
+    }
 }

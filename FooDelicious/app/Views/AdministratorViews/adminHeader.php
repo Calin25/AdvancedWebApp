@@ -27,10 +27,10 @@
                 <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/ManageProducts">Manage Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Manage Orders</a>
+                    <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/ViewAllOrders">Manage Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Manage Users</a>
+                    <a class="nav-link text-white" href="#">Manage Reviews</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/logout">Log Out</a>

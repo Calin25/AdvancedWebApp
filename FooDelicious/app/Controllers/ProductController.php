@@ -353,6 +353,7 @@ class ProductController extends BaseController
         }
 	}
 
+
     public function editProduct($id) {
 
     }
@@ -361,7 +362,6 @@ class ProductController extends BaseController
 		
         $data = []; $msg = "";
         
-        //load CI form helper
         helper(['form']);
         
         //if the user has submitted the form

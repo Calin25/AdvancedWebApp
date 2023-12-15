@@ -65,15 +65,18 @@ $routes->match(['get', 'post'], 'UpdateProduct/(:any)', 'ProductController::Upda
 
 $routes->match(['get', 'post'], 'searchProduct', 'ProductController::searchProduct');
 
-//Orders
+//Orders drillDownProducts amendOrder
 $routes->get('ViewMyOrders', 'OrderController::ViewMyOrders');
+$routes->get('ViewAllOrders', 'OrderController::ViewAllOrders');
+$routes->get('drillDownOrder/(:any)', 'OrderController::drillDownOrder/$1');
+$routes->match(['get', 'post'], 'AmendOrder/(:any)', 'OrderController::AmendOrder/$1');
 
 //WishList
 $routes->get('ViewMyWishList', 'WishListController::ViewMyWishList');
 $routes->get('InsertIntoWishList/(:any)', 'WishListController::InsertIntoWishList/$1');
+$routes->get('drilDownProductWishList/(:any)', 'WishListController::drilDownProductWishList/$1');
 
-
-
+$routes->get('deleteFromWishlist/(:any)', 'WishListController::deleteFromWishlist/$1');
 
 //Customer
 $routes->get('CustomerHomeView', 'CustomerController::CustomerHomeView');

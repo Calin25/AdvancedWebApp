@@ -28,6 +28,36 @@ use CodeIgniter\Model;
 
             return false;
         }
+
+        public function deleteFromWishLists($produceCode, $customerNumber)
+        {
+            $wishListID = $this->select('wishListID')
+            ->where(['produceCode' => $produceCode, 'customerNumberFK' => $customerNumber])
+            ->first();
+
+            if ($wishListID) {
+                $deleteCondition = ['wishListID' => $wishListID['wishListID']];
+        
+                return $this->delete($deleteCondition);
+            }
+
+            return false;
+        
+        }
+
+        public function deleteFromWishList($produceCode, $customerNumber) {
+            $builder = $this->builder();
+            $id = $this->select('wishListID')
+            ->where(['produceCode' => $produceCode, 'customerNumberFK' => $customerNumber])
+            ->first();
+            if($id){
+                $builder->delete(['wishListID' => $id]);
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
         
     }
 ?>

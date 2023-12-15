@@ -102,10 +102,10 @@
     }
 
     .BrowseProductsContainer {
-        /* display: flex; */
+       
         justify-content: center;
         align-items: center;
-        height: 300px; /* Adjust the height as needed */
+        height: 300px; 
     }
     
     .card-title,
@@ -144,34 +144,9 @@
         max-height: 100px;
     }
 
-    .d-flex {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
+    
 
-    .pagination {
-        display: flex;
-        list-style: none;
-        padding: 0;
-    }
-
-    .pagination li {
-        margin: 0 5px;
-        display: inline-block;
-    }
-
-    .pagination a {
-        text-decoration: none;
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        color: #333;
-    }
-
-    .pagination .active a {
-        background-color: #4CAF50;
-        color: white;
-    }
+ 
 
     
     
