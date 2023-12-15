@@ -3,31 +3,45 @@ use CodeIgniter\Model;
 
     class Basket_Model extends Model
     {
-        protected $table = 'wishlist';
-        protected $allowedFields = ['wishListID','produceCode','customerNumberFK'];
-
-        public function getBasket($customerNumber) {
-            return $this->select('produceCode')
-                ->where(['customerNumberFK' => $customerNumber])
-                ->findAll();
-        }
-
-        public function addToBasket($produceCode)
+        public function insertIntoBasket($produceCode, $customerNumber)
         {
-            $existingWish = $this->where(['produceCode' => $produceCode])->first();
+            $session = session();
+            $basketData = $session->get('BasketData') ?? [];
 
-            if (!$existingWish) {
-                
-                $data = [
-                    'produceCode' => $produceCode,
+            $existingProductKey = array_search(['produceCode' => $produceCode, 'customerNumber' => $customerNumber], $basketData);
+
+            if ($existingProductKey !== false) {
+                $basketData[$existingProductKey]['quantity'] += 1;
+            } else {
+                $model = new Products_Model();
+                $productData = $model->getProductByIDCategory($produceCode);
+
+                $newProduct = [
+                    'produceCode' => $productData['produceCode'],
+                    'customerNumber' => $customerNumber,
+                    'quantity' => 1,
+                    'description' => $productData['description'],
+                    'category' => $productData['category'],
+                    'supplier' => $productData['supplier'],
+                    'quantityInStock' => $productData['quantityInStock'],
+                    'bulkBuyPrice' => $productData['bulkBuyPrice'],
+                    'bulkSalePrice' => $productData['bulkSalePrice'],
+                    'photo' => $productData['photo'],
+                    // Add other fields as needed
                 ];
 
-                return $data;
-                
+                $basketData[] = $newProduct;
             }
 
-            return false;
+            $session->set('BasketData', $basketData);
+            return $basketData;
         }
-        
+
+
+        public function viewBasket()
+        {
+            $session = session();
+            return $session->get('BasketData') ?? [];
+        }
     }
 ?>

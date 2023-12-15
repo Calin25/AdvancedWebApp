@@ -30,9 +30,9 @@
         </a>
     </button>
 	<button>
-        <a href="<?php echo base_url('deleteFromWishlist/'.$product['produceCode']); ?>" 
-           onclick="return confirm('Are you sure you want to delete this item from your wish list?');">
-            Delete From WishList
+        <a href="<?php echo base_url('InsertIntoWishList/'.$product['produceCode']); ?>" 
+           onclick="return confirm('Are you sure you want to add this item to your wish list?');">
+            Add To Wish List
         </a>
     </button>
     

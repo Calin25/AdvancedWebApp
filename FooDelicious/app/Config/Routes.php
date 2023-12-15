@@ -82,6 +82,10 @@ $routes->get('deleteFromWishlist/(:any)', 'WishListController::deleteFromWishlis
 $routes->get('CustomerHomeView', 'CustomerController::CustomerHomeView');
 $routes->get('CustomerBrowseProducts', 'CustomerController::CustomerBrowseProducts');
 
+//basket insertIntoBasket
+$routes->get('insertIntoBasket/(:any)', 'BasketController::insertIntoBasket/$1');
+$routes->get('viewBasket', 'BasketController::viewBasket');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

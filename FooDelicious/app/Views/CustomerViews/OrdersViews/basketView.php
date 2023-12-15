@@ -1,4 +1,4 @@
-<h1 class="center-text"> My Wish List </h1>
+<h1 class="center-text"> My Basket </h1>
 <style>
     table {
         margin-left: auto;
@@ -21,7 +21,7 @@
     <th align="center ">Bulk Sale Price</th>
     <th align="center ">Image</th>
 </tr>
-<?php foreach($prod as $row){?>
+<?php foreach($basketData as $row){?>
     <tr>
     <td><?php echo $row['produceCode'];?></td>
     <td><?php echo $row['description'];?></td>

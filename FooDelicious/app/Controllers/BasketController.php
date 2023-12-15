@@ -36,25 +36,47 @@ class BasketController extends BaseController
 
     }
 
-    public function InsertIntoBasket($produceCode){
-        $session = session()->start();
-        $userID = session()->get('customerNumber');
-        $model = new Basket_Model();
-        $msg = "";
-        $basketData = $model->insertIntoWishList($produceCode, $userID);
 
-        if(!empty($basketData)){
-            $session->set("BasketData",$basketData);
+    public function insertIntoBasket($produceCode)
+    {
+        $session = session();
+        $basketData = $session->get('BasketData') ?? [];
+
+        $userID = $session->get('customerNumber');
+
+        $model = new Basket_Model();
+
+        $updatedBasketData = $model->insertIntoBasket($produceCode, $userID);
+
+        if ($updatedBasketData) {
+            $productData = $model->getProductByIDCategory($produceCode);
+            $basketData[] = $productData;
+            $session->set('BasketData', $basketData);
+
             $msg = "Successfully Added to Basket";
-        }
-        else{
+        } else {
             $msg = "Issue adding to Basket";
         }
 
         $data['message'] = $msg;
-            return view('CustomerViews/customerHeader')
-                . view('displayMessageView', $data)
-                . view('templates/footer');
 
+        return view('CustomerViews/customerHeader')
+            . view('displayMessageView', $data)
+            . view('templates/footer');
     }
+
+
+    public function viewBasket(){
+        $session = session();
+        $basketData = $session->get('BasketData') ?? [];
+        var_dump($session);
+
+        $data['basketData'] = $basketData;
+    
+        return view('CustomerViews/customerHeader', $data)
+                . view('CustomerViews/OrdersViews/basketView')
+                . view('templates/footer');
+    }
+
+
 }
