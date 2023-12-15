@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
+use App\Models\Products_Model;
 
     class Basket_Model extends Model
     {
@@ -8,15 +9,9 @@ use CodeIgniter\Model;
             $session = session();
             $basketData = $session->get('BasketData') ?? [];
 
-            $existingProductKey = array_search(['produceCode' => $produceCode, 'customerNumber' => $customerNumber], $basketData);
+            $productData = (new Products_Model())->getProductByIDCategory($produceCode['produceCode']);
 
-            if ($existingProductKey !== false) {
-                $basketData[$existingProductKey]['quantity'] += 1;
-            } else {
-                $model = new Products_Model();
-                $productData = $model->getProductByIDCategory($produceCode);
-
-                $newProduct = [
+                $basketItem = [
                     'produceCode' => $productData['produceCode'],
                     'customerNumber' => $customerNumber,
                     'quantity' => 1,
@@ -27,16 +22,14 @@ use CodeIgniter\Model;
                     'bulkBuyPrice' => $productData['bulkBuyPrice'],
                     'bulkSalePrice' => $productData['bulkSalePrice'],
                     'photo' => $productData['photo'],
-                    // Add other fields as needed
                 ];
 
-                $basketData[] = $newProduct;
-            }
+                $basketData[] = $basketItem;
 
             $session->set('BasketData', $basketData);
             return $basketData;
-        }
 
+        }
 
         public function viewBasket()
         {

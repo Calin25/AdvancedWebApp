@@ -8,10 +8,13 @@ use CodeIgniter\Model;
 
         
         public function getOrders($customerNumber) {
-            return $this->select('orderNumber,orderDate, requiredDate, shippedDate, status, comments')
-                ->where(['customerNumber' => $customerNumber])
+            return $this->select('o.*, od.productCode, od.quantityOrdered, od.priceEach')
+                ->from('orderdetails od')
+                ->join('orders o', 'o.orderNumber = od.orderNumber')
+                ->where(['o.customerNumber' => $customerNumber])
                 ->findAll();
         }
+        
 
         public function getAllOrders() {
             return $this->select('orderNumber,orderDate, requiredDate, shippedDate, status, comments,customerNumber')

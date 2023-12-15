@@ -82,9 +82,21 @@ $routes->get('deleteFromWishlist/(:any)', 'WishListController::deleteFromWishlis
 $routes->get('CustomerHomeView', 'CustomerController::CustomerHomeView');
 $routes->get('CustomerBrowseProducts', 'CustomerController::CustomerBrowseProducts');
 
-//basket insertIntoBasket
+//basket insertIntoBasket drillDownProductsBasket
 $routes->get('insertIntoBasket/(:any)', 'BasketController::insertIntoBasket/$1');
 $routes->get('viewBasket', 'BasketController::viewBasket');
+$routes->get('drillDownProductsBasket/(:any)', 'BasketController::drillDownProductsBasket/$1');
+$routes->get('removeFromBasket/(:any)', 'BasketController::removeFromBasket/$1');
+
+//ViewMyWishList addReview viewAllReviews
+$routes->get('ViewMyReviews', 'ReviewsController::ViewMyReviews');
+$routes->get('viewAllReviews', 'ReviewsController::viewAllReviews');
+$routes->match(['get', 'post'], 'AddReview/(:any)', 'OrderController::AddReview/$1');
+
+
+
+
+
 
 /*
  * --------------------------------------------------------------------

@@ -30,7 +30,7 @@
                     <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/ViewAllOrders">Manage Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Manage Reviews</a>
+                <a class="nav-link active text-white" aria-current="page" href="<?php echo base_url(); ?>/viewAllReviews">Manage Reviews</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/logout">Log Out</a>

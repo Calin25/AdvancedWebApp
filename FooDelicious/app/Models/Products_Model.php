@@ -24,8 +24,9 @@ use CodeIgniter\Model;
 
         public function getProductByIDCategory($categoryCode) {
             return $this->asArray()
-            ->where(['produceCode' => $categoryCode])
+            ->where('produceCode', $categoryCode)
             ->first();
+
         }
 
 
@@ -42,7 +43,6 @@ use CodeIgniter\Model;
         {
             $search = '%'.$search .'%';
 
-            
             echo "Search Term: $search<br>";
         
             $result = $this->asArray()

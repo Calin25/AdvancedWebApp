@@ -416,7 +416,7 @@ class ProductController extends BaseController
                     $msg .= "<br><br>image resized to thumbnail<br><br>";  
                     $model = new Products_Model;
         
-                    //get values from post
+                 
                     $aProduct = [ 	'produceCode' => $_POST['produceCode'],
                                     'description'  => $_POST['description'],
                                     'category'  => $_POST['category'],
@@ -426,7 +426,7 @@ class ProductController extends BaseController
                                     'bulkSalePrice'  => $_POST['bulkSalePrice'],
                                     'image'     => $originalName  ];
 
-                    //check if insert to database is successful – display appropriate message
+                 
                     if ($model->save($aProduct)) {
                         $msg .= "<br><br>The insert to database has been successful<br><br>";
                     } else {

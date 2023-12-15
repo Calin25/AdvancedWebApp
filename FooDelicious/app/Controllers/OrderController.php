@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Orders_Model;
+use App\Models\Reviews_Model;
 
 
 class OrderController extends BaseController
@@ -16,6 +17,7 @@ class OrderController extends BaseController
         //$data['sessionData'] = $session->get();
 
         if (!empty($data)) {
+            //var_dump($data);
             return view('CustomerViews/customerHeader', $data)
                 . view('CustomerViews/OrdersViews/viewMyOrders')
                 . view('templates/footer');
@@ -165,7 +167,60 @@ class OrderController extends BaseController
                     . view('templates/footer');
             }
         }
+
+        
     }
+
+    public function AddReview($productCode)
+    {
+        $data = [];
+        $msg = "";
+
+        helper(['form']);
+        $session = session();
+        $userID = $session->get('customerNumber');
+
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                'customerReview' => 'required|min_length[5]',
+                'stars' => 'required',
+                'date' => 'required|valid_date',
+            ];
+
+            if (!$this->validate($rules)) {
+                $data['validation'] = $this->validator;
+            } else {
+                $model = new Reviews_Model();
+
+                $reviewData = [
+                    'customerReview' => $_POST['customerReview'],
+                    'stars' => $_POST['stars'],
+                    'date' => $_POST['date'],
+                    'customerNumber' => $userID,
+                    'produceCode' => $productCode,
+                ];
+
+                if ($model->save($reviewData)) {
+                    $msg .= "<br><br>The review has been successfully added to the database<br><br>";
+                } else {
+                    $msg .= "<br><br>Uh oh ... problem adding the review to the database<br><br>";
+                }
+
+                $data['message'] = $msg;
+
+                return view('CustomerViews/customerHeader')
+                    . view('displayMessageView', $data)
+                    . view('templates/footer');
+            }
+        }
+
+        $data['productCode'] = $productCode;
+
+        return view('CustomerViews/customerHeader', $data)
+            . view('CustomerViews/Reviews/addReviewToOrder')
+            . view('templates/footer');
+    }
+
     
     
 }

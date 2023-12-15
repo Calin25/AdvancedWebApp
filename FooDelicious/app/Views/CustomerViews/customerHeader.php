@@ -37,7 +37,15 @@
                 <a class="nav-link text-white" href="<?php echo base_url(); ?>/viewBasket">Basket</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">My Account</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reviews
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="<?php echo base_url(); ?>/viewAllReviews">View All Reviews</a>
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>/ViewMyReviews">My Reviews</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<?php echo base_url(); ?>/logout">Log Out</a>

@@ -36,7 +36,6 @@ class BasketController extends BaseController
 
     }
 
-
     public function insertIntoBasket($produceCode)
     {
         $session = session();
@@ -45,12 +44,15 @@ class BasketController extends BaseController
         $userID = $session->get('customerNumber');
 
         $model = new Basket_Model();
+        $pModel = new Products_Model();
 
-        $updatedBasketData = $model->insertIntoBasket($produceCode, $userID);
+        $productData = $pModel->getProductByIDCategory($produceCode);
+
+        $updatedBasketData = $model->insertIntoBasket($productData, $userID);
 
         if ($updatedBasketData) {
-            $productData = $model->getProductByIDCategory($produceCode);
             $basketData[] = $productData;
+
             $session->set('BasketData', $basketData);
 
             $msg = "Successfully Added to Basket";
@@ -65,18 +67,73 @@ class BasketController extends BaseController
             . view('templates/footer');
     }
 
-
-    public function viewBasket(){
+    public function removeFromBasket($produceCode)
+    {
         $session = session();
         $basketData = $session->get('BasketData') ?? [];
-        var_dump($session);
 
-        $data['basketData'] = $basketData;
+        $indexToRemove = array_search($produceCode, array_column($basketData, 'produceCode'));
+
+        if ($indexToRemove !== false) {
+            unset($basketData[$indexToRemove]);
+        }
+
+        $basketData = array_values($basketData);
+
+        $session->set('BasketData', $basketData);
+
+        $msg = "Successfully Removed from Basket";
+
+        $data['message'] = $msg;
+
+        return view('CustomerViews/customerHeader')
+            . view('displayMessageView', $data)
+            . view('templates/footer');
+    }
+
     
+
+
+    public function viewBasket() {
+        $session = session();
+        $basketData = $session->get('BasketData') ?? [];
+        
+        $pager = null;
+    
+        $data['basketData'] = $basketData;
+        
         return view('CustomerViews/customerHeader', $data)
                 . view('CustomerViews/OrdersViews/basketView')
                 . view('templates/footer');
     }
+
+    public function drillDownProductsBasket($id) { 
+        $model = new Products_Model();
+        $userType = session()->get('userType');
+        $productData['product'] = $model->getProductByIDCategory($id);
+       
+        switch($userType){
+               
+                case 'Customer':
+                    if($userType != "Customer"){
+                        return view('templates/HomeHeader', $productData)
+                        . view('GeneralView/ProductViews/drillDownProduct')
+                        . view('templates/footer');
+                    }else{
+                        return view('CustomerViews/customerHeader', $productData)
+                        . view('CustomerViews/customerDrillDownBasket')
+                        . view('templates/footer');
+                    break;
+                    }
+
+                default:
+                    return view('templates/HomeHeader', $productData)
+                        . view('GeneralView/ProductViews/drillDownProduct')
+                        . view('templates/footer');
+                    break;
+        }
+	}
+    
 
 
 }

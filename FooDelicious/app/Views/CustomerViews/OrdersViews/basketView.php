@@ -34,15 +34,11 @@
     
     <td><img src="<?php echo base_url(); ?>/assets/images/products/thumbs/<?=
     $row['photo'] ?>"/>
-      <td><a href="<?php echo base_url('drillDownProducts/'.$row['produceCode']); ?>"> <button>View Product</button></a></td>
+      <td><a href="<?php echo base_url('drillDownProductsBasket/'.$row['produceCode']); ?>"> <button>View Product</button></a></td>
      
     </tr>
 
 <?php }?>
 </table>
 
-    <div class="d-flex justify-content-center">
-        <?php if ($pager)
-        echo $pager->links();
-        ?>
-    </div>
+   
